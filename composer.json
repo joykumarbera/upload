@@ -1,7 +1,7 @@
 {
     "name": "bera/upload",
     "description": "a package for upload files",
-    "keywords": ["uplod"],
+    "keywords": ["upload"],
     "type": "library",
     "license": "MIT",
     "authors": [

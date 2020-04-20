@@ -22,13 +22,25 @@ class Upload extends BaseUpload implements UploadInterface
      */
     public function upload() : bool
     {
+        if($this->validate() === false) {
+            return false;
+        }
+
+        if(\move_uploaded_file($this->file->getTempLocation(), $this->uploadDestination()) === false) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * @return bool
+     */
+    protected function validate() 
+    {
         if($this->checkUploadConditon() !== true) {
             return false;
         }
         if($this->checkUploadDir() !== true) {
-            return false;
-        }
-        if(\move_uploaded_file($this->file->getTempLocation(), $this->uploadDestination()) === false) {
             return false;
         }
         return true;
