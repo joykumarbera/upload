@@ -97,7 +97,7 @@ class Upload extends BaseUpload implements UploadInterface
      */
     protected function uploadDestination() 
     {
-        return $this->uploadDir . '/' . $this->file->generateFileName();
+        return $this->uploadDir . '/' . $this->file->getUplodedFileName();
     }
 
     /**
@@ -106,6 +106,6 @@ class Upload extends BaseUpload implements UploadInterface
      */
     public function getUploadedFileName() 
     {
-        return $this->file->generateFileName();
+        return $this->file->getUplodedFileName();
     }
 }

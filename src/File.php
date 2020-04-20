@@ -16,11 +16,17 @@ class File
     protected $file;
 
     /**
+     * uploded file name
+     */
+    protected $uploded_file_name;
+
+    /**
      * @param array $file
      */
     public function __construct($file) 
     {
         $this->setFile($file);
+        $this->uploded_file_name = null;
     }
 
     /**
@@ -32,6 +38,18 @@ class File
             $this->file = null;
         }
         $this->file = $file;
+    }
+
+    /**
+     * set uploaded file name
+     * @param string $filename
+     */
+    public function setUploadedFileName() 
+    {
+        if(is_null($this->uploded_file_name)) {
+            $file_ext = $this->getFileExtension();
+            $this->uploded_file_name = uniqid(self::UPLOAD_FILE_NAME_PREFIX) . '.' . $file_ext;
+        }
     }
 
     /**
@@ -82,12 +100,14 @@ class File
     }
 
     /**
-     * generate file name
+     * return uploded file name
      * @return string
      */
-    public function generateFileName() 
+    public function getUplodedFileName() 
     {
-        $file_ext = $this->getFileExtension();
-        return uniqid(self::UPLOAD_FILE_NAME_PREFIX) . '.' . $file_ext;
+        if(is_null($this->uploded_file_name)) {
+            $this->setUploadedFileName();
+        }
+        return $this->uploded_file_name;
     }
 }
