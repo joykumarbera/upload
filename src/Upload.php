@@ -87,4 +87,13 @@ class Upload extends BaseUpload implements UploadInterface
     {
         return $this->uploadDir . '/' . $this->file->generateFileName();
     }
+
+    /**
+     * return uploded file name
+     * @return string
+     */
+    public function getUploadedFileName() 
+    {
+        return $this->file->generateFileName();
+    }
 }
